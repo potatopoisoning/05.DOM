@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <title>DOM 객체</title>
+    </head>
+    <body>
+        <p id="myP">문단입니다.</p>
+        <span id="mySpan">span입니다.</span>
+        <div id="myDiv">div입니다.</div>
+        <script>
+            // DOM객체를 id를 이용해서 바로 인식할 수 있습니다.
+            console.log(myP);
+            // id는 유일하게 작성해야 합니다.
+
+            // DOM 구조의 최상위 객체 document
+            // 태그 이름으로 객체를 찾아주세요 요청
+            let item = document.getElementsByTagName("p");
+            // get 메소드 이름에 elements(복수형) -> 컬렉션을 반환
+            console.log(item);
+            // 찾는 태그 이름의 요소가 없을때에는 원소가 0개인 컬렉션을 반환
+            item = document.getElementsByTagName("table");
+            console.log(item);
+            
+            item = document.getElementsByTagName("p");
+            if(item.length != 0)
+            {
+                for(let i = 0; i < item.length; i++)
+                {
+                    console.log(item[i]);
+                }
+            }
+        </script>
+    </body>
+</html>

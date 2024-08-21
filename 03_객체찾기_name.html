@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <title>Document</title>
+    </head>
+    <body>
+        <p name="title">제목</p>
+        <p name="contents">내용</p>
+        <p name="author">홍길동</p>
+        <script>
+            // name 속성으로 찾기
+            let items = document.getElementsByName("author");
+            console.log(items);
+            console.log(items.length);
+            if(items.length != 0)
+            {
+                for(let tmp of items)
+                console.log(tmp);
+            }
+        </script>
+    </body>
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <title>Document</title>
+    </head>
+    <body>
+        <p id="title">제목</p>
+        <p id="contents">내용</p>
+        <p id="author">홍길동</p>
+        <!-- id는 유일하게 작성해야 합니다. -->
+        <!-- 중복되었을때 탐색 결과를 위해 중복시켰습니다. -->
+        <p id="contents">다른내용</p>
+        <script>
+            // id로 찾기
+            let result = document.getElementById("title");
+            if(result != null)
+            {
+                console.log(result);
+            }
+
+            result = document.getElementById("date");
+            if(result != null)
+            {
+                console.log(result);
+            }
+            
+            result = document.getElementById("contents");
+            if(result != null)
+            {
+                console.log(result);
+            }
+        </script>
+    </body>
+</html>
