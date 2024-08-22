@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <title>자바스크립트 계산기</title>
+        <style>
+            input:focus{
+                background-color: mistyrose;
+                outline: none;
+                border: none;
+                border-bottom: 3px solid pink;
+                border-radius: 5px;
+            }
+        </style>
+        <script>
+            window.onload = function()
+            {
+                console.log("문서가 로딩되었습니다.");
+                let x = document.getElementById("x");
+                console.log("x : ", x); 
+                x.focus(); // 객체로 커서(포커스)를 이동
+                // input 태그에 입력된 값 -> value 속성의 값
+                // console.log("x.value : ", x.value);
+            }
+            function DoCal()
+            {
+                // x, y, op 객체를 찾음
+                let objX = document.getElementById("x");
+                let objY = document.getElementById("y");
+                let sop = document.getElementById("op");
+
+                // x, y, op의 값을 가져옴
+                let num1 = parseInt(objX.value);
+                let num2 = parseInt(objY.value);
+                console.log(num1, num2, sop.value);
+                
+                // x, y, op의 값의 유효성 체크
+                if(isNaN(num1) || isNaN(num2))
+                {
+                    alert("숫자가 아닙니다.");
+                    return;
+                }
+                // op에 따라 연산을 수행함
+                let r = 0;
+                switch(sop.value)
+                {
+                    case "+" : 
+                        r = num1 + num2;
+                        break;
+                    case "-" : 
+                        r = num1 - num2;
+                        break;
+                    case "*" : 
+                        r = num1 * num2;
+                        break;
+                    case "/" : 
+                        r = num1 / num2;
+                        break;
+                    default : 
+                        alert("오류가 발생되었습니다.");
+                        break;
+                }
+                // 연산 결과를 result 객체를 찾아 value를 변경함
+                document.getElementById("result").value = r;
+            }
+        </script>
+    </head>
+    <body>
+        <!-- 숫자 x를 입력 받음 -->
+        <input type="text" id="x" name="numX">
+        <!-- 연산자 op를 입력 받음 -->
+        <select name="op" id="op">
+            <option value="+">+</option>
+            <option value="-">-</option>
+            <option value="*">*</option>
+            <option value="/">/</option>
+        </select>
+        <!-- 숫자 y를 입력 받음 -->
+        <input type="text" id="y" name="numY">
+        <!-- 연산을 수행시킬 버튼 -->
+        <!-- 버튼이 클릭외되었을때에 DoCal()를 실행해주세요. -->
+        <input type="button" value="=" onclick="DoCal();">
+        <!-- 결과를 출력할 장소 -->
+        <input type="text" id="result" readonly>
+    </body>
+</html>
