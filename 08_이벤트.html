@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <title>객체의 속성 변경하기</title>
+        <script>
+            function DoChange()
+            {
+                // class가 msg인 객체를 찾아서
+                let items = document.getElementsByClassName("msg");
+                console.log(items);
+                let obj = items[0];
+                console.log(obj);
+
+                // '문단 영역입니다'를 '변경된 문자열 입니다' 로 변경하는 내용을 작성
+                obj.innerText = "변경된 문자열 입니다."
+            }
+        </script>
+    </head>
+    <body>
+        <!-- <button onclick="alert('버튼이 눌림');">내용 변경</button> -->
+        <!-- DoChange() 함수 호출로 변경 -->
+        <!-- head 영역에 선언되어있는 함수이지만, 버튼을 클릭해야 호출되기에, msg 객체를 잘 찾습니다. -->
+        <button onclick="DoChange();">내용 변경</button>
+        <p class="msg">문단 영역입니다.</p>
+        <hr>
+        <script>
+            // makeList() -> id가 listArea인 객체를 찾아
+            // 하위 요소에 "<ul><li>항목</li><li>항목</li></ul>" 문자열을 넣어
+            // 새로운 dom 객체를 생성하게 합니다.
+            function makeList()
+            {
+                let obj = document.getElementById("listArea");
+                let item1 = "java";
+                let item2 = "HTML";
+                // item.innerHTML = "<ul><li><span style='color: white;'>항목</span></li><li>항목</li></ul>";
+                // 백틱을 사용한 탬플릿 리터럴 -> 데이터 바인딩
+                obj.innerHTML = `<ul><li><span style='color: white;'>${item1}</span></li><li>${item2}</li></ul>`; // 들여쓰기 그대로 적용
+                console.log(obj);
+            }
+        </script>
+        <button onclick="makeList();">리스트 생성</button><br>
+        <p id="listArea" style="background-color: chartreuse;">새로운 문단 영역입니다.</p>
+    </body>
+</html>

@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <title>로그인</title>
+        <style>
+            table{
+                background-color: white;
+                border: 1px solid #DB7093;
+                /* border-width: 1px; */
+                border-radius: 10px;
+                padding: 5px;
+            }
+            
+            .menu{
+                height: 30px;
+                background-color: pink;
+                color: white;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                margin: 5px;
+                border-radius: 5px;
+            }
+            .menu:hover{
+                background-color: lavenderblush;
+                cursor: pointer;
+            }
+            #login{
+                background-color: pink;
+                color: white;
+                height: 30px;
+                border: 0;
+                border-radius: 5px;
+            }
+            #login:hover{
+                background-color: rgb(248, 229, 239);
+                color: white;
+                cursor: pointer;
+            }
+            
+            .ip{
+                border-radius: 5px;
+                width: 300px;
+                height: 40px;
+                border: #DB7093 1px solid;
+            }
+        </style>
+        <script>
+            // 문서가 로드되면 아이디 입력창으로 커서를 이동
+            window.onload = function()
+            {
+                // let obj = document.getElementById("uid");
+                // obj.focus();
+                document.getElementById("uid").focus();
+            }
+
+            // form의 주요 이벤트 : submit, reset
+            function DoLogin()
+            {
+                // alert("login Call");
+                // 메세지를 입력할 객체를 찾음
+                let msgBox = document.getElementById("msgbox");
+                // 1. id가 입력이 되어있는지 확인
+                let objid = document.getElementById("uid");
+                // 1-1. 입력이 되어있지 않으면, 사용자에게 알리고, id 입력창으로 커서 이동
+                if(objid.value == "")
+                {
+                    // alert("아이디를 입력해주세요.");
+                    // 메세지박스에 메세지 출력
+                    msgBox.innerHTML = "<span style = 'color:red; font-weight:bold;'>아이디를 입력하세요.</span>";
+                    objid.focus();
+                    // submit을 중단
+                    return false; 
+                }else
+                {
+                    // 일단 아이디는 입력이 되어있음
+                    if(objid.value.length < 4)
+                    {
+                        // 입력값이 4글자가 안됨
+                        msgBox.innerHTML = "<span style = 'color:red; font-weight:bold;'>아이디는 4자 이상 입력하세요.</span>";
+                        objid.focus();
+                        return false;
+                    }
+                }
+                // 1-2. 입력되어있으면 pw 체크로 이동
+                // 2. pw가 입력이 되어있는지 확인
+                let objpw = document.getElementById("upw");
+                // 2-1. 입력되어있지 않으면, 알리고, 이동
+                if(objpw.value == "")
+                {
+                    // alert("비밀번호를 입력해주세요.");
+                    msgBox.innerText = "비밀번호를 입력하세요.";
+                    msgBox.style.color = "red";
+                    // setAttribute("속성이름", "속성값")
+                    // setAttribute()를 이용해서 인라인 스타일 지정이 가능합니다.
+                    msgBox.setAttribute("style", "color:red; font-size:20px;");
+                    objpw.focus();
+                    // submit을 중단
+                    return false;
+                }else
+                {
+                    // 일단 아이디는 입력이 되어있음
+                    if(objpw.value.length < 10)
+                    {
+                        // 입력값이 4글자가 안됨
+                        msgBox.innerText = "비밀번호는 10자 이상 입력하세요.";
+                        msgBox.setAttribute("style", "color:red; font-size:20px;");
+                        objpw.focus();
+                        return false;
+                    }
+                }
+                // 2-2. 입력되어있으면 submit 진행
+                return true;
+            }
+
+            function DoReset()
+            {
+                // alert("reset Call");
+                // 메세지 출력 박스를 찾아서 
+                let msgBox = document.getElementById("msgbox");
+                // 내용을 지움
+                msgBox.innerHTML = "";
+            }
+
+            function test()
+            {
+                alert("call");
+            }
+        </script>
+    </head>
+    <body style="background-color:  rgb(248, 229, 239);">
+        <table style="width: 700px; margin: auto;" class="tbl">
+            <tr>
+                <td colspan="2">
+                    <!-- 헤더부분 시작------------------------------------------------------------------>
+                    <table style="width: 100%; border: none;" >
+                        <tr>
+                            <td>
+                                <!-- 제목 -->
+                                <h2 style="color: #DB7093;">&nbsp;&nbsp;AWS 풀스택 학습 커뮤니티</h2>
+                            </td>
+                            <td style="text-align: right;">
+                                <!--버튼들  -->
+                                <a href="10_join.html">회원가입</a> 
+                                &nbsp;&nbsp;
+                                <a href="9_login.html">로그인</a>
+                                &nbsp;
+                            </td>
+                        </tr>
+                    </table>
+                    <!-- 헤더부분 종료------------------------------------------------------------------>
+                </td>
+            </tr>
+            <tr>
+                <td style="width: 200px;" valign="top">
+                    <!-- <table>
+                        <tr>
+                            <td> -->
+                                <!-- 메뉴부분 -->
+                                <div class="menu">자바 학습 게시판</div>
+                                <div class="menu">HTML/CSS 학습 게시판</div>
+                                <div class="menu">Javascript 학습 게시판</div>
+                                <div class="menu">Jquery 학습 게시판</div>
+                                <div class="menu">DBMS 학습 게시판</div>
+                                <div class="menu">Spring 학습 게시판</div>
+                            <!-- </td>
+                        </tr>
+                    </table> -->
+                </td>
+                <td>
+                    <!-- 내용부분 시작------------------------------------------------------------------>
+                    <table style="width: 100%;">
+                        <tr>
+                            <td style="height: 50px; text-align: center;" >
+                                <span style="font-weight: bold; color: #DB7093;">로그인</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <!-- submit, reset은 form의 이벤트입니다. -->
+                                <form action="loginOk.html" method="post" onsubmit="return DoLogin();" onreset="DoReset();">
+                                <table style="border: none; width: 100%; text-align: center;">
+                                    <tr>
+                                        <!-- <td style="width: 120px; text-align: left;">
+                                            아이디
+                                        </td> -->
+                                        <td>
+                                            <!-- 인풋 폼 내부에서 키가 누리면 함수를 호출 -->
+                                            <input type="text" name="id" id="uid" onkeydown="DoReset();" placeholder=" 아이디" class="ip">
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <!-- <td style="width: 120px; text-align: left;">
+                                            비밀번호</td> -->
+                                        <td>
+                                            <input type="password" name="pw" id="upw" onkeydown="DoReset();" placeholder=" 비밀번호" class="ip">
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="2" style="height: 1rem; text-align: center;">
+                                            <span id="msgbox"></span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="2" style="text-align: center;">
+                                            <!-- 버튼에 onclick 이벤트로 호출된 함수는 submit와 reset에 영향을 미치지 못합니다.
+                                             onclik 이벤트 종료 후, submit와 reset 이벤트가 발생되어 처리됩니다.
+                                             submit. reset 이벤트는 form의 이벤트입니다. -->
+                                            <!-- <input type="submit" id="login" value="로그인하기" onclick="DoLogin();">
+                                            <input type="reset" id="login" value="취소하기" onclick="DoReset();"> -->
+                                            <input type="submit" id="login" value="로그인하기">
+                                            <input type="reset" id="login" value="취소하기">
+                                        </td>
+                                    </tr>
+                                </table>
+                                </form>
+                                <!-- 내용부분 종료------------------------------------------------------------------>
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2" align="right">
+                    <!-- 풋터부분 -->
+                     Copyrigth by EZEN ALL rigths reserved
+                </td>
+            </tr>
+        </table>
+    </body>
+</html>
