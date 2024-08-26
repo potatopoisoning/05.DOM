@@ -6,47 +6,159 @@
         <style>
             table{
                 background-color: white;
+                border: 1px solid #DB7093;
+                /* border-width: 1px; */
+                border-radius: 10px;
+                padding: 5px;
             }
+            
             .menu{
                 height: 30px;
                 background-color: pink;
                 color: white;
-                /* text-align: center;
-                vertical-align: middle; */
                 display: flex;
-                /* flexbox의 기본값은 row */
-                /* align-item의 정렬 방향은 수직선이 됩니다. */
-                /* align-items: center; -> 수직방향의 중앙 */
                 align-items: center;
-                /* justify-content의 정렬 방향은 주축의 수직 교차축입니다. */
-                /* row 설정에서는 수평방향이 됩니다. */
                 justify-content: center;
                 margin: 5px;
+                border-radius: 5px;
             }
             .menu:hover{
                 background-color: lavenderblush;
                 cursor: pointer;
             }
-            #join{
+            #login{
                 background-color: pink;
                 color: white;
                 height: 30px;
                 border: 0;
                 border-radius: 5px;
             }
-            #join:hover{
+            #login:hover{
                 background-color: rgb(248, 229, 239);
                 color: white;
                 cursor: pointer;
             }
+            
+            .ip{
+                border-radius: 5px;
+                width: 300px;
+                height: 40px;
+                border: #DB7093 1px solid;
+            }
         </style>
+        <script>
+            window.onload = function()
+            {
+                document.getElementById("uid").focus();
+            }
+
+            function DoJoin()
+            {
+                let objid = document.getElementById("uid");
+                if(objid.value == "")
+                {
+                    let msgBox = document.getElementById("msgbox1");
+                    msgBox.innerText = "아이디를 입력하세요";
+                    msgBox.setAttribute("style", "color:red;");
+                    objid.focus();
+                    return false; 
+                }else
+                {
+                    if(objid.value.length < 4)
+                    {
+                        let msgBox = document.getElementById("msgbox1");
+                        msgBox.innerText = "아이디는 4자 이상 입력하세요.";
+                        msgBox.setAttribute("style", "color:red;");
+                        objid.focus();
+                        return false;
+                    }
+                }
+                let objpw = document.getElementById("upw");
+                if(objpw.value == "")
+                {
+                    let msgBox = document.getElementById("msgbox2");
+                    msgBox.innerText = "비밀번호를 입력하세요";
+                    msgBox.setAttribute("style", "color:red;");
+                    objpw.focus();
+                    return false;
+                }else
+                {
+                    if(objpw.value.length < 10)
+                    {
+                        let msgBox = document.getElementById("msgbox2");
+                        msgBox.innerText = "비밀번호는 10자 이상 입력하세요";
+                        msgBox.setAttribute("style", "color:red;");
+                        objpw.focus();
+                        return false;
+                    }
+                }
+                let objpwc = document.getElementById("upwc");
+                if(objpwc.value != "" && objpw.value != objpwc.value)
+                {
+                    let msgBox = document.getElementById("msgbox3");
+                    msgBox.innerText = "비밀번호가 일치하지 않습니다.";
+                    msgBox.setAttribute("style", "color:red;");
+                    objpwc.focus();
+                    return false;
+                }
+                let objname = document.getElementById("uname");
+                if(objname.value == "")
+                {
+                    let msgBox = document.getElementById("msgbox4");
+                    msgBox.innerText = "이름을 입력하세요.";
+                    msgBox.setAttribute("style", "color:red;");
+                    objpwc.focus();
+                    return false;
+                }else
+                {
+                    if(objname.value.length < 2)
+                    {
+                        let msgBox = document.getElementById("msgbox4");
+                        msgBox.innerText = "이름은 2글자 이상 입력하세요.";
+                        msgBox.setAttribute("style", "color:red;");
+                        objname.focus();
+                        return false;
+                    }
+                }
+                return true;
+            }
+            function DoReset()
+            {
+                let msgBox1 = document.getElementById("msgbox1");
+                let msgBox2 = document.getElementById("msgbox2");
+                let msgBox3 = document.getElementById("msgbox3");
+                let msgBox4 = document.getElementById("msgbox4");
+                msgBox1.innerHTML = "";
+                msgBox2.innerHTML = "";
+                msgBox3.innerHTML = "";
+                msgBox4.innerHTML = "";
+            }
+
+            function checkAll(obj){
+                console.log(obj.checked);
+                let cBtns = document.getElementsByClassName("cBtn");
+                if(obj.checked == true) 
+                {
+                    for(let item of cBtns)
+                    {
+                        item.checked = true;
+                    }
+                }else 
+                {
+                    for(let item of cBtns)
+                    {
+                        item.checked = false;
+                    }
+                }
+            }
+        </script>
     </head>
     <body style="background-color:  rgb(248, 229, 239);">
-        <table border="1" style="width: 700px; margin: auto;">
+        <table style="width: 700px; margin: auto;" class="tbl">
             <tr>
                 <td colspan="2">
                     <!-- 헤더부분 시작------------------------------------------------------------------>
-                    <table style="width: 100%;">
+                    <table style="width: 100%; border: none;" >
                         <tr>
                             <td>
                                 <!-- 제목 -->
@@ -54,9 +166,9 @@
                             </td>
                             <td style="text-align: right;">
                                 <!--버튼들  -->
-                                <a href="join.html">회원가입</a> 
+                                <a href="10_join.html">회원가입</a> 
                                 &nbsp;&nbsp;
-                                <a href="login.html">로그인</a>
+                                <a href="9_login.html">로그인</a>
                                 &nbsp;
                             </td>
                         </tr>
@@ -66,6 +178,7 @@
             </tr>
             <tr>
                 <td style="width: 200px;" valign="top">
+        
                     <!-- 메뉴부분 -->
                     <div class="menu">자바 학습 게시판</div>
                     <div class="menu">HTML/CSS 학습 게시판</div>
@@ -73,114 +186,121 @@
                     <div class="menu">Jquery 학습 게시판</div>
                     <div class="menu">DBMS 학습 게시판</div>
                     <div class="menu">Spring 학습 게시판</div>
+                     
                 </td>
                 <td>
                     <!-- 내용부분 시작------------------------------------------------------------------>
                     <table style="width: 100%;">
                         <tr>
-                            <td style="height: 50px;">
-                                <span style="font-weight: bold; color: #DB7093;">※ 회원가입</span>
+                            <td style="height: 50px; text-align: center;" >
+                                <span style="font-weight: bold; color: #DB7093; font-size: 15pt;">회원가입</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <!-- submit, reset은 form의 이벤트입니다. -->
+                                <form action="loginOk.html" method="post" onsubmit="return DoJoin();" onreset="DoReset();">
+                                    <table style ="width: 100%; border: none;">
+                                        <tr>
+                                            <td style="width: 120px;">
+                                                아이디(*)
+                                            </td>
+                                            <td>
+                                                <input type="text" name="uid" id="uid" onkeydown="DoReset();"><span id="msgbox1"></span>
+                                            </td>
+                                        </tr>
+                                        <tr>  
+                                            <td style="width: 120px;">
+                                                비밀번호(*)</td>
+                                            <td>
+                                                <input type="password" name="upw" id="upw" onkeydown="DoReset();"><span id="msgbox2"></span>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td style="width: 120px;">
+                                                비밀번호 확인(*)</td>
+                                            <td>
+                                                <input type="password" name="upwc" id="upwc" onkeydown="DoReset();"><span id="msgbox3"></span>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td style="width: 120px;">
+                                                이름(*)</td>
+                                            <td>
+                                                <input type="text" name="uname" id="uname" onkeydown="DoReset();"><span id="msgbox4"></span>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td style="width: 120px;">
+                                                나이</td>
+                                            <td>
+                                                <input type="number" name="uage" id="uage" min="0">
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td style="width: 120px;">
+                                                이메일</td>
+                                            <td>
+                                                <input type="email" name="uemail" id="uemail" size="44%">
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td style="width: 120px;">
+                                                성별</td>
+                                            <td>
+                                                <label><input type="radio" size="40%" name="gender" value="M">남자</label>
+                                                <label><input type="radio" size="40%" name="gender" value="F">여자</label>
+                                                <label><input type="radio" size="40%" name="gender" value="N" checked>비공개</label>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td style="width: 120px;">
+                                                생일</td>
+                                            <td>
+                                                <input type="date" name="birth" size="40%">
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td style="width: 120px;">
+                                                취미</td>
+                                            <td>
+                                                <select name="hobby">
+                                                    <option value="h0" selected>선택</option>
+                                                    <option value="h1">낚시</option>
+                                                    <option value="h2">여행</option>
+                                                    <option value="h3">게임</option>
+                                                    <option value="h4">영화</option>
+                                                    <option value="h5">음악감상</option>
+                                                </select>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td style="width: 120px;">
+                                                기술분야</td>
+                                            <td>
+                                                <label><input type="checkbox" name="all" value="s0" onclick="checkAll(this);">전체선택</label><br>
+                                                <label><input type="checkbox" class="cBtn" name="fav" value="s0">웹 디자인</label>
+                                                <label><input type="checkbox" class="cBtn" name="fav" value="s1">프론트엔드</label>
+                                                <label><input type="checkbox" class="cBtn" name="fav" value="s2">백엔드</label><br>
+                                                <label><input type="checkbox" class="cBtn" name="fav" value="s3">데이터베이스</label>
+                                                <label><input type="checkbox" class="cBtn" name="fav" value="s4">데브옵스</label><br>
+                                                <label><input type="checkbox" class="cBtn" name="fav" value="s5">기획</label>
+                                                <label><input type="checkbox" class="cBtn" name="fav" value="s6">운영</label>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="2" style="text-align: center;">
+                                                <!-- <input type="submit" value="로그인하기"> -->
+                                                <button type="submit" id="join">가입완료</button>
+                                                <button type="reset" id="join">취소</button>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </form>
+                                <!-- 내용부분 종료------------------------------------------------------------------>
                             </td>
                         </tr>
                     </table>
-                    <form action="joinOk.html" method="post">
-                    <table border="1" width="100%">
-                        <tr>
-                            <td style="width: 120px;">
-                                아이디(*)
-                            </td>
-                            <td>
-                                <input type="text" size="44%" name="id" required>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td style="width: 120px;">
-                                비밀번호(*)</td>
-                            <td>
-                                <input type="password" size="44%" name="pw" required>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td style="width: 120px;">
-                                비밀번호 확인(*)</td>
-                            <td>
-                                <input type="password" size="44%" name="pwc" required>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td style="width: 120px;">
-                                이름(*)</td>
-                            <td>
-                                <input type="text" size="44%" name="name" required>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td style="width: 120px;">
-                                나이</td>
-                            <td>
-                                <input type="number" size="44%" name="age" min="0">
-                            </td>
-                        </tr>
-                        <tr>
-                            <td style="width: 120px;">
-                                이메일</td>
-                            <td>
-                                <input type="email" name="email" size="44%">
-                            </td>
-                        </tr>
-                        <tr>
-                            <td style="width: 120px;">
-                                성별</td>
-                            <td>
-                                <label><input type="radio" size="40%" name="gender" value="M">남자</label>
-                                <label><input type="radio" size="40%" name="gender" value="F">여자</label>
-                                <label><input type="radio" size="40%" name="gender" value="N" checked>비공개</label>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td style="width: 120px;">
-                                생일</td>
-                            <td>
-                                <input type="date" name="birth" size="40%">
-                            </td>
-                        </tr>
-                        <tr>
-                            <td style="width: 120px;">
-                                취미</td>
-                            <td>
-                                <select name="hobby">
-                                    <option value="h0" selected>선택</option>
-                                    <option value="h1">낚시</option>
-                                    <option value="h2">여행</option>
-                                    <option value="h3">게임</option>
-                                    <option value="h4">영화</option>
-                                    <option value="h5">음악감상</option>
-                                </select>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td style="width: 120px;">
-                                기술분야</td>
-                            <td>
-                                <label><input type="checkbox" name="fav" value="f0">웹 디자인</label>
-                                <label><input type="checkbox" name="fav" value="f1">프론트엔드</label>
-                                <label><input type="checkbox" name="fav" value="f2">백엔드</label><br>
-                                <label><input type="checkbox" name="fav" value="f3">데이터베이스</label>
-                                <label><input type="checkbox" name="fav" value="f4">데브옵스</label><br>
-                                <label><input type="checkbox" name="fav" value="f5">기획</label>
-                                <label><input type="checkbox" name="fav" value="f6">운영</label>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td colspan="2" style="text-align: center;">
-                                <!-- <input type="submit" value="로그인하기"> -->
-                                <button type="submit" id="join">가입완료</button>
-                                <button type="reset" id="join">취소</button>
-                            </td>
-                        </tr>
-                    </table>
-                    </form>
-                    <!-- 내용부분 종료------------------------------------------------------------------>
                 </td>
             </tr>
             <tr>

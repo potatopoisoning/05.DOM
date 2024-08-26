@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <title>select option</title>
+    </head>
+    <body>
+        <select id="hobby" name="hobby" onchange="checkSelect(this);">
+            <option value="1">취미1</option>
+            <option value="2">취미2</option>
+            <option value="3">취미3</option>
+            <option value="4">취미4</option>
+            <option value="5">취미5</option>
+        </select>
+        <hr>
+        <button onclick="getSelectValue()">선택값</button><br>
+        <button onclick="setSelectValue(0)">취미1</button><br>
+        <button onclick="setSelectValue(1)">취미2</button><br>
+        <button onclick="setSelectValue(2)">취미3</button><br>
+        <button onclick="setSelectValue(3)">취미4</button><br>
+        <button onclick="setSelectValue(4)">취미5</button><br>
+        <!-- 계산기 -> 연산자 선택이 바뀌면 함수 호출 -->
+        <script>
+            function checkSelect(obj)
+            {
+                // select - option에서 현재 선택된 값을 가져올때
+                console.log(obj.value);
+                // select박스의 모든 option 객체를 배열로 받기
+                let options = obj.options;
+                console.log(options);
+                // 선택되어있는 option 객체의 인덱스값
+                console.log(obj.selectedIndex);
+                // 선택되어있는 option 객체
+                console.log(options[obj.selectedIndex]);
+                // 선택되어있는 option 객체의 값
+                let tmp = options[obj.selectedIndex];
+                console.log(tmp.value);
+                // 모든 option 객체의 값을 출력
+                for(let i = 0; i< options.length; i++)
+                {
+                    console.log(options[i].value);
+                }
+            }
+            function getSelectValue(){
+                let obj = document.getElementById("hobby");
+                alert(obj.value);
+            }
+            function setSelectValue(idx){
+                let obj = document.getElementById("hobby");
+                obj.options[idx].selected = true;
+            }
+        </script>
+    </body>
+</html>

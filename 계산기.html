@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <title>버튼 계산기</title>
+        <style>
+            body{
+                background-color: lavenderblush;
+            }
+            table{
+                background-color: pink;
+                border: 2px solid rgb(214, 111, 163);
+                border-spacing: 1rem;
+                border-radius: 1rem;
+                box-shadow: 2px 2px 3px rgb(214, 111, 163);
+                margin: auto;
+            }
+            td{
+                width: 120px;
+            }
+            th,td{
+                border: 2px solid rgb(214, 111, 163);
+                border-radius: 1rem;
+                text-align: center;
+                vertical-align: middle;
+                font-size: 1.5rem;
+                font-weight: bold;
+                background-color: pink;
+                color: white;
+            }
+            input{
+                width: 99%;
+                height:99%;
+                font-size: 2rem;
+                font-weight: bold;
+                border: none;
+                border-radius: 1rem;
+            }
+            input:focus{
+                color: rgb(214, 111, 163);
+            }
+            td:hover{
+                background-color: rgb(245, 154, 167);
+            }
+        </style>
+        <script>
+            window.onload = function(){
+                let msgBox = document.getElementById("msgBox");
+                console.log("문서 로드가 끝났습니다.");
+                console.log(msgBox);
+                // 버튼이 눌렀을때에, 이벤트를 일괄 적용
+                // 1. 모든 버튼을 찾음
+                let btnList = document.getElementsByTagName("td");
+                console.log(btnList);
+                // 2. 각각의 버튼이 눌렸을때 해야할 내용을 작성
+                for(let item of btnList)
+                {
+                    // 객체.이벤트 = 함수(){}
+                    item.onmousedown = function(){
+
+                    // item.innerText 값의 종류에 따라 (AC, 연산자, 숫자, =) 처리를 다르게 해줍니다.
+                    // 예시)
+                    // if(isNaN(parseInt(item.innerText)) { 숫자일때 실행할 내용 }
+                    // if(item.innerText == "AC") {메세지 박스를 지우는 내용 작성}
+                    // if(item.innerTest == "=") {숫자가 두번 입력되고 연산자가 입력되어있으면 연산을 수행하는 내용 작성}
+
+                    console.log(item.innerText);
+                    msgBox.value +=item.innerText;
+                    }
+                }
+            }
+            
+            function clearMsg(){
+                let msgBox = document.getElementById("msgBox");
+                msgBox.value = "";
+            }
+        </script>
+    </head>
+    <body>
+        <table style="width: 500px; height: 600px;">
+            <tr>
+                <th colspan="4">
+                    <input type="text" id="msgBox">
+                </th>
+            </tr>
+            <tr>
+                <td onclick="clearMsg();">AC</td>
+                <td>±</td>
+                <td>%</td>
+                <td>×</td>
+            </tr>
+            <tr>
+                <td>7</td>
+                <td>8</td>
+                <td>9</td>
+                <td>÷</td>
+            </tr>
+            <tr>
+                <td>4</td>
+                <td>5</td>
+                <td>6</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>1</td>
+                <td>2</td>
+                <td>3</td>
+                <td>+</td>
+            </tr>
+            <tr>
+                <td colspan="2">0</td>
+                <td>.</td>
+                <td>=</td>
+            </tr>
+        </table>
+    </body>
+</html>

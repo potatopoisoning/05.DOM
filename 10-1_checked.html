@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <title>라디오 버튼 / 체크박스</title>
+    </head>
+    <body>
+        <h2>라디오 버튼</h2>
+        <input type="radio" name="skill" value="1" class="rBtn"> java
+        <input type="radio" name="skill" value="2" class="rBtn"> html
+        <input type="radio" name="skill" value="3" class="rBtn"> js
+        <hr>
+        <button onclick="checkBtn('1');">java</button>
+        <button onclick="checkBtn('2');">html</button>
+        <button onclick="checkBtn('3');">js</button>
+        <script>
+            function checkBtn(val){
+                // 라디오 버튼을 모두 찾음
+                let btns = document.getElementsByClassName("rBtn");
+
+                for(let i = 0; i < btns.length; i++)
+                {
+                    // btns의 모든 원소에 대해 반복문을 들며
+                    if(val == btns[i].value)
+                    {
+                        // 함수가 받은 val값과 원소의 value값이 같으면
+                        // 라디오버튼 객체를 checked 상태로 바꿈
+                        btns[i].checked = true;
+                    }
+                }
+            }
+        </script>
+        <hr>
+        <input type="checkbox" name="all" onclick="checkAll(this);">전체선택<br>
+        <input type="checkbox" class="cBtn" name="stack" value="1">java
+        <input type="checkbox" class="cBtn" name="stack" value="2">html
+        <input type="checkbox" class="cBtn" name="stack" value="3">js
+        <script>
+            function checkAll(obj){
+                // 전체선택버튼의 상태에 따라
+                console.log(obj.checked);
+                // 1. checked == true -> 모든 checkBox를 찾아서 checked로 변경
+                let cBtns = document.getElementsByClassName("cBtn");
+                if(obj.checked == true) // 전체선택버튼이 체크되어있음
+                {
+                    for(let item of cBtns)
+                    {
+                        item.checked = true;
+                    }
+                // 2. checked == false -> 모든 체크박스의 checked를 삭제
+                }else // 전체선택버튼이 체크되어있지않음
+                {
+                    for(let item of cBtns)
+                    {
+                        item.checked = false;
+                    }
+                }
+            }
+        </script>
+    </body>
+</html>
