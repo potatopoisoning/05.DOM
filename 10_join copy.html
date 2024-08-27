@@ -2,7 +2,7 @@
 <html lang="ko">
     <head>
         <meta charset="UTF-8">
-        <title>회원가입</title>
+        <title>로그인</title>
         <style>
             table{
                 background-color: white;
@@ -43,118 +43,97 @@
                 border-radius: 5px;
                 width: 300px;
                 height: 40px;
-                border: #DB7093 1px solid;
+                border: pink 1px solid;
+            }
+            td{
+                color: pink;
             }
         </style>
         <script>
+            // 문서가 로드되면 아이디 입력창으로 커서를 이동
             window.onload = function()
             {
+                // let obj = document.getElementById("uid");
+                // obj.focus();
                 document.getElementById("uid").focus();
             }
 
-            function DoJoin()
+            // form의 주요 이벤트 : submit, reset
+            function DoLogin()
             {
+                // alert("login Call");
+                // 메세지를 입력할 객체를 찾음
+                let msgBox = document.getElementById("msgbox");
+                // 1. id가 입력이 되어있는지 확인
                 let objid = document.getElementById("uid");
+                // 1-1. 입력이 되어있지 않으면, 사용자에게 알리고, id 입력창으로 커서 이동
                 if(objid.value == "")
                 {
-                    let msgBox = document.getElementById("msgbox1");
-                    msgBox.innerText = "아이디를 입력하세요";
-                    msgBox.setAttribute("style", "color:red;");
+                    // alert("아이디를 입력해주세요.");
+                    // 메세지박스에 메세지 출력
+                    msgBox.innerHTML = "<span style = 'color:red; font-weight:bold;'>아이디를 입력하세요.</span>";
                     objid.focus();
+                    // submit을 중단
                     return false; 
                 }else
                 {
+                    // 일단 아이디는 입력이 되어있음
                     if(objid.value.length < 4)
                     {
-                        let msgBox = document.getElementById("msgbox1");
-                        msgBox.innerText = "아이디는 4자 이상 입력하세요.";
-                        msgBox.setAttribute("style", "color:red;");
+                        // 입력값이 4글자가 안됨
+                        msgBox.innerHTML = "<span style = 'color:red; font-weight:bold;'>아이디는 4자 이상 입력하세요.</span>";
                         objid.focus();
                         return false;
                     }
                 }
+                // 1-2. 입력되어있으면 pw 체크로 이동
+                // 2. pw가 입력이 되어있는지 확인
                 let objpw = document.getElementById("upw");
+                // 2-1. 입력되어있지 않으면, 알리고, 이동
                 if(objpw.value == "")
                 {
-                    let msgBox = document.getElementById("msgbox2");
-                    msgBox.innerText = "비밀번호를 입력하세요";
-                    msgBox.setAttribute("style", "color:red;");
+                    // alert("비밀번호를 입력해주세요.");
+                    msgBox.innerText = "비밀번호를 입력하세요.";
+                    msgBox.style.color = "red";
+                    // setAttribute("속성이름", "속성값")
+                    // setAttribute()를 이용해서 인라인 스타일 지정이 가능합니다.
+                    msgBox.setAttribute("style", "color:red; font-size:20px;");
                     objpw.focus();
+                    // submit을 중단
                     return false;
                 }else
                 {
+                    // 일단 아이디는 입력이 되어있음
                     if(objpw.value.length < 10)
                     {
-                        let msgBox = document.getElementById("msgbox2");
-                        msgBox.innerText = "비밀번호는 10자 이상 입력하세요";
-                        msgBox.setAttribute("style", "color:red;");
+                        // 입력값이 4글자가 안됨
+                        msgBox.innerText = "비밀번호는 10자 이상 입력하세요.";
+                        msgBox.setAttribute("style", "color:red; font-size:20px;");
                         objpw.focus();
                         return false;
                     }
                 }
-                let objpwc = document.getElementById("upwc");
-                if(objpwc.value != "" && objpw.value != objpwc.value)
-                {
-                    let msgBox = document.getElementById("msgbox3");
-                    msgBox.innerText = "비밀번호가 일치하지 않습니다.";
-                    msgBox.setAttribute("style", "color:red;");
-                    objpwc.focus();
-                    return false;
-                }
-                let objname = document.getElementById("uname");
-                if(objname.value == "")
-                {
-                    let msgBox = document.getElementById("msgbox4");
-                    msgBox.innerText = "이름을 입력하세요.";
-                    msgBox.setAttribute("style", "color:red;");
-                    objpwc.focus();
-                    return false;
-                }else
-                {
-                    if(objname.value.length < 2)
-                    {
-                        let msgBox = document.getElementById("msgbox4");
-                        msgBox.innerText = "이름은 2글자 이상 입력하세요.";
-                        msgBox.setAttribute("style", "color:red;");
-                        objname.focus();
-                        return false;
-                    }
-                }
+                // 2-2. 입력되어있으면 submit 진행
                 return true;
             }
+
             function DoReset()
             {
-                let msgBox1 = document.getElementById("msgbox1");
-                let msgBox2 = document.getElementById("msgbox2");
-                let msgBox3 = document.getElementById("msgbox3");
-                let msgBox4 = document.getElementById("msgbox4");
-                msgBox1.innerHTML = "";
-                msgBox2.innerHTML = "";
-                msgBox3.innerHTML = "";
-                msgBox4.innerHTML = "";
+                // alert("reset Call");
+                // 메세지 출력 박스를 찾아서 
+                let msgBox = document.getElementById("msgbox");
+                // 내용을 지움
+                msgBox.innerHTML = "";
             }
 
-            function checkAll(obj){
-                console.log(obj.checked);
-                let cBtns = document.getElementsByClassName("cBtn");
-                if(obj.checked == true) 
-                {
-                    for(let item of cBtns)
-                    {
-                        item.checked = true;
-                    }
-                }else 
-                {
-                    for(let item of cBtns)
-                    {
-                        item.checked = false;
-                    }
-                }
+            function test()
+            {
+                alert("call");
             }
         </script>
     </head>
     <body style="background-color:  rgb(248, 229, 239);">
-        <table style="width: 700px; margin: auto;" class="tbl">
+        <table style="width: 700px; margin: auto;">
             <tr>
                 <td colspan="2">
                     <!-- 헤더부분 시작------------------------------------------------------------------>
@@ -178,7 +157,6 @@
             </tr>
             <tr>
                 <td style="width: 200px;" valign="top">
-        
                     <!-- 메뉴부분 -->
                     <div class="menu">자바 학습 게시판</div>
                     <div class="menu">HTML/CSS 학습 게시판</div>
@@ -186,83 +164,77 @@
                     <div class="menu">Jquery 학습 게시판</div>
                     <div class="menu">DBMS 학습 게시판</div>
                     <div class="menu">Spring 학습 게시판</div>
-                     
                 </td>
                 <td>
                     <!-- 내용부분 시작------------------------------------------------------------------>
                     <table style="width: 100%;">
                         <tr>
                             <td style="height: 50px; text-align: center;" >
-                                <span style="font-weight: bold; color: #DB7093; font-size: 15pt;">회원가입</span>
+                                <span style="font-weight: bold; color: #DB7093;">로그인</span>
                             </td>
                         </tr>
                         <tr>
                             <td>
                                 <!-- submit, reset은 form의 이벤트입니다. -->
                                 <form action="loginOk.html" method="post" onsubmit="return DoJoin();" onreset="DoReset();">
-                                    <table style ="width: 100%; border: none;">
+                                    <table style ="width: 100%; border: none; text-align: center;">
                                         <tr>
-                                            <td style="width: 120px;">
-                                                아이디(*)
-                                            </td>
+                                            <td>아이디(*)</td>
                                             <td>
-                                                <input type="text" name="uid" id="uid" onkeydown="DoReset();"><span id="msgbox1"></span>
+                                                <input type="text" name="uid" id="uid" onkeydown="DoReset();" class="ip">
+                                                <div class="msgbox"></div>
                                             </td>
                                         </tr>
                                         <tr>  
-                                            <td style="width: 120px;">
-                                                비밀번호(*)</td>
+                                            <td>비밀번호(*)</td>
                                             <td>
-                                                <input type="password" name="upw" id="upw" onkeydown="DoReset();"><span id="msgbox2"></span>
+                                                <input type="password" name="upw" id="upw" onkeydown="DoReset();" class="ip">
+                                                <div class="msgbox"></div>
                                             </td>
                                         </tr>
                                         <tr>
-                                            <td style="width: 120px;">
-                                                비밀번호 확인(*)</td>
+                                            <td>비밀번호 확인(*)</td>
                                             <td>
-                                                <input type="password" name="upwc" id="upwc" onkeydown="DoReset();"><span id="msgbox3"></span>
+                                                <input type="password" name="upwc" id="upwc" onkeydown="DoReset();" class="ip">
+                                                <div class="msgbox"></div>
                                             </td>
                                         </tr>
                                         <tr>
-                                            <td style="width: 120px;">
-                                                이름(*)</td>
+                                            <td>이름(*)</td>
                                             <td>
-                                                <input type="text" name="uname" id="uname" onkeydown="DoReset();"><span id="msgbox4"></span>
+                                                <input type="text" name="uname" id="uname" onkeydown="DoReset();" class="ip">
+                                                <div class="msgbox"></div>
                                             </td>
                                         </tr>
                                         <tr>
-                                            <td style="width: 120px;">
-                                                나이</td>
+                                            <td>나이</td>
                                             <td>
-                                                <input type="number" name="uage" id="uage" min="0">
+                                                <input type="number" name="uage" id="uage" min="0" class="ip">
                                             </td>
                                         </tr>
                                         <tr>
-                                            <td style="width: 120px;">
-                                                이메일</td>
+                                            <td>이메일(*)</td>
                                             <td>
-                                                <input type="email" name="uemail" id="uemail" size="44%">
+                                                <input type="email" name="uemail" id="uemail" class="ip">
+                                                <div class="msgbox"></div>
                                             </td>
                                         </tr>
                                         <tr>
-                                            <td style="width: 120px;">
-                                                성별</td>
+                                            <td>성별</td>
                                             <td>
-                                                <label><input type="radio" size="40%" name="gender" value="M">남자</label>
-                                                <label><input type="radio" size="40%" name="gender" value="F">여자</label>
-                                                <label><input type="radio" size="40%" name="gender" value="N" checked>비공개</label>
+                                                <label><input type="radio" name="gender" value="M">남자</label>
+                                                <label><input type="radio" name="gender" value="F">여자</label>
+                                                <label><input type="radio" name="gender" value="N" checked>비공개</label>
                                             </td>
                                         </tr>
                                         <tr>
-                                            <td style="width: 120px;">
-                                                생일</td>
+                                            <td>생일</td>
                                             <td>
-                                                <input type="date" name="birth" size="40%">
+                                                <input type="date" name="birth">
                                             </td>
                                         </tr>
                                         <tr>
-                                            <td style="width: 120px;">
-                                                취미</td>
+                                            <td>취미</td>
                                             <td>
                                                 <select name="hobby">
                                                     <option value="h0" selected>선택</option>
@@ -275,8 +247,7 @@
                                             </td>
                                         </tr>
                                         <tr>
-                                            <td style="width: 120px;">
-                                                기술분야</td>
+                                            <td>기술분야</td>
                                             <td>
                                                 <label><input type="checkbox" name="all" value="s0" onclick="checkAll(this);">전체선택</label><br>
                                                 <label><input type="checkbox" class="cBtn" name="fav" value="s0">웹 디자인</label>
